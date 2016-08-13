@@ -1,0 +1,10 @@
+download.file(url = "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip", destfile ="eletric_power_consumption.txt")
+sample.file <- unzip("eletric_power_consumption")
+f <- read.table(sample.file, sep = ";", header = TRUE)
+dat <- f[f$Date == "1/2/2007" | f$Date == "2/2/2007",]
+x = as.numeric(dat$Global_active_power)
+png("plot1.png", width = 480, height = 480)
+hist(x, main = "Global Active Power", xlab = "Global Active Power (kilowatts)", col = "red", axes = FALSE)
+axis(1, at = seq(0,3000, by = 1000), labels = c(0,2,4,6))
+axis(2, at = seq(0, 1200, by = 200))
+dev.off()
